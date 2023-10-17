@@ -1,7 +1,7 @@
 # ComfyUI_MSSpeech_TTS  
 ComfyUI下使用的文本转语音插件。使用Microsoft speech TTS 接口将文本内容转为MP3格式的语音文件。  
 
-![image](https://github.com/chflame163/ComfyUI_MSSpeech_TTS/tree/main/image/ComfyUI_MSSpeech_TTS.png)
+![image](image/ComfyUI_MSSpeech_TTS.png)
 
 ### 插件调整项：  
 **voice:** 语音种类。   
