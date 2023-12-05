@@ -18,9 +18,14 @@ class Text2AutioEdgeTts:
 
     @classmethod
     def INPUT_TYPES(cls):
-        VOICES=['zh-CN-XiaoxiaoNeural','zh-CN-XiaoyiNeural','zh-CN-YunjianNeural','zh-CN-YunxiNeural','zh-CN-YunxiaNeural',
+        VOICES=[
+'zh-CN-XiaoxiaoNeural','zh-CN-XiaoyiNeural','zh-CN-YunjianNeural','zh-CN-YunxiNeural','zh-CN-YunxiaNeural',
 'zh-CN-YunyangNeural','zh-CN-liaoning-XiaobeiNeural','zh-CN-shaanxi-XiaoniNeural','zh-HK-HiuGaaiNeural',
-'zh-HK-HiuMaanNeural','zh-HK-WanLungNeural','zh-TW-HsiaoChenNeural','zh-TW-HsiaoYuNeural','zh-TW-YunJheNeural']
+'zh-HK-HiuMaanNeural','zh-HK-WanLungNeural','zh-TW-HsiaoChenNeural','zh-TW-HsiaoYuNeural','zh-TW-YunJheNeural',
+'en-US-AnaNeural','en-US-AriaNeural','en-US-ChristopherNeural','en-US-EricNeural','en-US-GuyNeural',
+'en-US-JennyNeural','en-US-MichelleNeural','en-US-RogerNeural','en-US-SteffanNeural',
+'en-GB-LibbyNeural','en-GB-MaisieNeural','en-GB-RyanNeural','en-GB-SoniaNeural','en-GB-ThomasNeural'
+                ]
         return {
             "required": {
                 "voice": (VOICES, ),
@@ -38,9 +43,9 @@ class Text2AutioEdgeTts:
 
     def text_2_autio(self,voice,filename_prefix,text,rate):
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir)
-        _datetime = datetime.datetime.now().strftime("%Y_%m_%d")
-        _datetime = _datetime + "_" + datetime.datetime.now().strftime("%H_%M_%S")
-        file = f"{filename}_{_datetime}_{counter:02}.mp3"
+        _datetime = datetime.datetime.now().strftime("%Y%m%d")
+        _datetime = _datetime + datetime.datetime.now().strftime("%H%M%S%f")
+        file = f"{filename}_{_datetime}_{voice}.mp3"
         autio_path=os.path.join(full_output_folder, file)
         _rate = str(rate) + "%" if rate < 0 else "+" + str(rate) + "%"
         print(f"MicrosoftSpeech TTS: Generating voice files, voice=‘{voice}’, rate={rate}, audiofile_path='{autio_path}, 'text='{text}'")
