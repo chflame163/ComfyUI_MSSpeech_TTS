@@ -1,3 +1,6 @@
+# 更新：
+增加一个后台播放音频文件的节点Play Sound，包括音量调节。这个节点支持多线程播放。
+
 # ComfyUI_MSSpeech_TTS  
 ComfyUI下使用的文本转语音插件。使用Microsoft speech TTS 接口将文本内容转为MP3格式的语音文件。  
 
