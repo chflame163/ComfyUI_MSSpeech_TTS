@@ -1,5 +1,12 @@
-# 更新：
-增加一个后台播放音频文件的节点Play Sound，包括音量调节。这个节点支持多线程播放。
+## 增加节点：
+### Play Sound 
+选项：音量和语速调节，音量调整范围0-1，语速调整范围0.1-2。这个节点支持多线程播放。  
+### Play Sound(loop)
+选项：音量调节和循环选项，音量调整范围0-1。这个节点始终占一个声音播放线程。  
+
+ (由于引入了新的节点，请重新安装依赖包)   
+
+![image](image/playsoundnode.png)
 
 # ComfyUI_MSSpeech_TTS  
 ComfyUI下使用的文本转语音插件。使用Microsoft speech TTS 接口将文本内容转为MP3格式的语音文件。  

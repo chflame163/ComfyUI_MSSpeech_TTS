@@ -31,7 +31,7 @@ class Text2AutioEdgeTts:
                 "voice": (VOICES, ),
                 "rate": ("INT", {"default": 0, "min": -200, "max": 200}),
                 "filename_prefix": ("STRING", {"default": "comfyUI"}),
-                "text": ("STRING", {"multiline": True})
+                "text": ("STRING", {"multiline": True}),
             }
         }
     RETURN_TYPES = ("STRING",)
@@ -52,7 +52,7 @@ class Text2AutioEdgeTts:
         # asyncio.run(edge_tts_text_2_aution(voice,text,autio_path))
         asyncio.run(gen_tts(text,voice,_rate,autio_path))
 
-        return {"ui": {"text": "Audio file saved to："+os.path.join(full_output_folder, file),
+        return {"ui": {"text": "Audio file："+os.path.join(full_output_folder, file),
         'autios':[{'filename':file,'type':'output','subfolder':'autio'}]}, "result": (autio_path, )}
 
 

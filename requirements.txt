@@ -1,4 +1,6 @@
 numpy
 edge_tts
 asyncio
+pyglet
 arcade
+pygame

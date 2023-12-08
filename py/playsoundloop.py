@@ -1,13 +1,20 @@
 import sys
 import os
 import threading
-from arcade import load_sound
+from pygame import mixer
 
-def Play(path, volume, speed):
-    s = load_sound(path)
-    s.play(volume, 0, False, speed)
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+mixer.init()
 
-class Play_Sound_Now():
+def Play(path, volume, loop):
+    mixer.music.load(path)
+    mixer.music.set_volume(volume)
+    if loop:
+        mixer.music.play(-1)
+    else:
+        mixer.music.play()
+
+class Play_Sound_pygame_Now():
 
     def __init__(self):
         pass
@@ -18,7 +25,7 @@ class Play_Sound_Now():
             "required": {
                 "path": ("STRING", {"default": 'comfyui.mp3'}),
                 "volume": ("FLOAT", {"default": 1, "min": 0.0, "max": 1.0, "step": 0.01}),
-                "speed": ("FLOAT", {"default": 1, "min": 0.1, "max": 2.0, "step": 0.1}),
+                "loop": ("BOOLEAN", {"default": False}),
             },
             "optional": {
             },
@@ -29,12 +36,12 @@ class Play_Sound_Now():
     OUTPUT_NODE = True
     CATEGORY = "MicorsoftSpeech_TTS"
 
-    def do_playsound(self, path, volume, speed):
-        t = threading.Thread(target=Play(path, volume, speed))
+    def do_playsound(self, path, volume, loop):
+        t = threading.Thread(target=Play(path, volume, loop))
         t.start()
-        return {"ui": {"text": ("",)}}
+        return {}
 
 
 NODE_CLASS_MAPPINGS = {
-    "Play Sound": Play_Sound_Now
+    "Play Sound (loop) ": Play_Sound_pygame_Now
 }
