@@ -10,7 +10,7 @@ async def gen_tts(_text,_voice,_rate,filename):
     tts = edge_tts.Communicate(text = _text, voice = _voice, rate = _rate)
     await tts.save(filename)
 
-class Text2AutioEdgeTts:
+class Text2AudioEdgeTts:
     def __init__(self):
         self.output_dir = os.path.join(folder_paths.get_output_directory(), 'audio')
         if not os.path.exists(self.output_dir):
@@ -36,34 +36,34 @@ class Text2AutioEdgeTts:
         }
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("MP3 file: String",)
-    FUNCTION = "text_2_autio"
+    FUNCTION = "text_2_audio"
     OUTPUT_NODE = True
 
-    CATEGORY = "MicorsoftSpeech_TTS"
+    CATEGORY = "MicrosoftSpeech_TTS"
 
-    def text_2_autio(self,voice,filename_prefix,text,rate):
+    def text_2_audio(self,voice,filename_prefix,text,rate):
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir)
         _datetime = datetime.datetime.now().strftime("%Y%m%d")
         _datetime = _datetime + datetime.datetime.now().strftime("%H%M%S%f")
         file = f"{filename}_{_datetime}_{voice}.mp3"
-        autio_path=os.path.join(full_output_folder, file)
+        audio_path=os.path.join(full_output_folder, file)
         _rate = str(rate) + "%" if rate < 0 else "+" + str(rate) + "%"
-        print(f"MicrosoftSpeech TTS: Generating voice files, voice=‘{voice}’, rate={rate}, audiofile_path='{autio_path}, 'text='{text}'")
-        # asyncio.run(edge_tts_text_2_aution(voice,text,autio_path))
-        asyncio.run(gen_tts(text,voice,_rate,autio_path))
+        print(f"MicrosoftSpeech TTS: Generating voice files, voice=‘{voice}’, rate={rate}, audiofile_path='{audio_path}, 'text='{text}'")
+
+        asyncio.run(gen_tts(text,voice,_rate,audio_path))
 
         return {"ui": {"text": "Audio file："+os.path.join(full_output_folder, file),
-        'autios':[{'filename':file,'type':'output','subfolder':'autio'}]}, "result": (autio_path, )}
+        'audios':[{'filename':file,'type':'output','subfolder':'audio'}]}, "result": (audio_path, )}
 
 
-async def edge_tts_text_2_aution(VOICE,TEXT,OUTPUT_FILE) -> None:
+async def edge_tts_text_2_audion(VOICE,TEXT,OUTPUT_FILE) -> None:
     communicate = edge_tts.Communicate(TEXT, VOICE)
     await communicate.save(OUTPUT_FILE)
 
 NODE_CLASS_MAPPINGS = {
-    "MicorsoftSpeech_TTS": Text2AutioEdgeTts
+    "MicrosoftSpeech_TTS": Text2AudioEdgeTts
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "MicorsoftSpeech_TTS": "MicorsoftSpeech_TTS"
+    "MicrosoftSpeech_TTS": "MicrosoftSpeech_TTS"
 }

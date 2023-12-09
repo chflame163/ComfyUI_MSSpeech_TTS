@@ -1,4 +1,3 @@
-import sys
 import os
 import threading
 from pygame import mixer
@@ -14,7 +13,7 @@ def Play(path, volume, loop):
     else:
         mixer.music.play()
 
-class Play_Sound_pygame_Now():
+class Play_Sound_pygame_Now:
 
     def __init__(self):
         pass
@@ -26,6 +25,7 @@ class Play_Sound_pygame_Now():
                 "path": ("STRING", {"default": 'comfyui.mp3'}),
                 "volume": ("FLOAT", {"default": 1, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "loop": ("BOOLEAN", {"default": False}),
+                "trigger": ("BOOLEAN", {"default": True}),
             },
             "optional": {
             },
@@ -34,11 +34,15 @@ class Play_Sound_pygame_Now():
     RETURN_TYPES = ()
     FUNCTION = "do_playsound"
     OUTPUT_NODE = True
-    CATEGORY = "MicorsoftSpeech_TTS"
+    CATEGORY = "MicrosoftSpeech_TTS"
 
-    def do_playsound(self, path, volume, loop):
-        t = threading.Thread(target=Play(path, volume, loop))
-        t.start()
+    def do_playsound(self, path, volume, loop, trigger):
+
+        print(f"play sound: path={path},volume={volume},loop={loop},trigger={trigger}")
+        if trigger:
+            t = threading.Thread(target=Play(path, volume, loop))
+            t.start()
+
         return {}
 
 
