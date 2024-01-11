@@ -27,14 +27,14 @@ class Trigger:
     RETURN_TYPES = ("BOOLEAN",)
     FUNCTION = "check_input"
     OUTPUT_NODE = True
-    CATEGORY = "MicrosoftSpeech_TTS"
+    CATEGORY = "😺dzNodes"
 
     def check_input(self, always_true, anything=None):
 
         ret = False
         if always_true or (anything is not None):
             ret = True
-        print(f"Input Trigger: {ret}")
+        print(f"# 😺dzNodes: Input Trigger: {ret}")
 
         return (ret,)
 

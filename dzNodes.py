@@ -27,7 +27,7 @@ def log(message, type=None, always=False, name=None):
     if name is None:
         name = get_extension_config()["name"]
 
-    print(f"(MSSpeech:{name}) {message}")
+    print(f"(ComfyUI_dzNodes:{name}) {message}")
 
 
 def get_ext_dir(subpath=None, mkdir=False):
@@ -57,7 +57,7 @@ def get_comfy_dir(subpath=None, mkdir=False):
 def get_web_ext_dir():
     config = get_extension_config()
     name = config["name"]
-    dir = get_comfy_dir("web/extensions/msspeech")
+    dir = get_comfy_dir("web/extensions/dzNodes")
     if not os.path.exists(dir):
         os.makedirs(dir)
     dir = os.path.join(dir, name)
@@ -69,7 +69,7 @@ def get_extension_config(reload=False):
     if reload == False and config is not None:
         return config
 
-    config_path = get_ext_dir("msspeech.json")
+    config_path = get_ext_dir("dzNodes.json")
     if not os.path.exists(config_path):
         log("Missing json, this extension may not work correctly. Please reinstall the extension.",
             type="ERROR", always=True, name="???")
@@ -217,7 +217,7 @@ def update_node_status(client_id, node, text, progress=None):
     if client_id is None:
         return
 
-    PromptServer.instance.send_sync("azure/update_status", {
+    PromptServer.instance.send_sync("dzNodes/update_status", {
         "node": node,
         "progress": progress,
         "text": text
@@ -231,7 +231,7 @@ async def update_node_status_async(client_id, node, text, progress=None):
     if client_id is None:
         return
 
-    await PromptServer.instance.send("azure/update_status", {
+    await PromptServer.instance.send("dzNodes/update_status", {
         "node": node,
         "progress": progress,
         "text": text

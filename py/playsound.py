@@ -27,11 +27,11 @@ class Play_Sound_Now:
     RETURN_TYPES = ()
     FUNCTION = "do_playsound"
     OUTPUT_NODE = True
-    CATEGORY = "MicrosoftSpeech_TTS"
+    CATEGORY = "😺dzNodes"
 
     def do_playsound(self, path, volume, speed, trigger):
 
-        print(f"play sound: path={path},volume={volume},speed={speed},trigger={trigger}")
+        print(f"# 😺dzNodes: PlaySound: path={path},volume={volume},speed={speed},trigger={trigger}")
         if trigger:
             t = threading.Thread(target=Play(path, volume, speed))
             t.start()

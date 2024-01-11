@@ -12,7 +12,7 @@ async def gen_tts(_text, _voice, _rate, filename):
 INIFILE = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), "voicelist.ini")
 voice_dict = {}
 try:
-    print('# MSSpeech: Load voice setting -> ' + INIFILE)
+    print('# 😺dzNodes: MSSpeech TTS: Load voice setting -> ' + INIFILE)
     with open(INIFILE, 'r') as f:
         ini = f.readlines()
 
@@ -24,9 +24,9 @@ try:
                 name = api_name[api_name.rfind('-') + 1:api_name.find('Neural')]
                 display_item = lang + ':' + name + '(' + gender + ')'
                 voice_dict.update({display_item: api_name})
-        print('# MSSpeech: ' + str(len(voice_dict)) + ' voice load successfully.')
+        print('# 😺dzNodes: MSSpeech TTS: ' + str(len(voice_dict)) + ' voice load successfully.')
 except Exception as e:
-    print('# MSSpeech: ERROR -> ' + repr(e))
+    print('# 😺dzNodes: MSSpeech TTS: ERROR -> ' + repr(e))
 
 
 class Text2AudioEdgeTts:
@@ -51,8 +51,7 @@ class Text2AudioEdgeTts:
     RETURN_NAMES = ("MP3 file: String",)
     FUNCTION = "text_2_audio"
     OUTPUT_NODE = True
-
-    CATEGORY = "MicrosoftSpeech_TTS"
+    CATEGORY = "😺dzNodes"
 
     def text_2_audio(self,voice,filename_prefix,text,rate):
         voice_name = voice_dict[voice]
@@ -62,7 +61,7 @@ class Text2AudioEdgeTts:
         file = f"{filename}_{_datetime}_{voice_name}.mp3"
         audio_path=os.path.join(full_output_folder, file)
         _rate = str(rate) + "%" if rate < 0 else "+" + str(rate) + "%"
-        print(f"MicrosoftSpeech TTS: Generating voice files, voice=‘{voice_name}’, rate={rate}, audiofile_path='{audio_path}, 'text='{text}'")
+        print(f"# 😺dzNodes: MSSpeech TTS: Generating voice files, voice=‘{voice_name}’, rate={rate}, audiofile_path='{audio_path}, 'text='{text}'")
 
         asyncio.run(gen_tts(text,voice_name,_rate,audio_path))
 

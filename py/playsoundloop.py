@@ -34,11 +34,11 @@ class Play_Sound_pygame_Now:
     RETURN_TYPES = ()
     FUNCTION = "do_playsound"
     OUTPUT_NODE = True
-    CATEGORY = "MicrosoftSpeech_TTS"
+    CATEGORY = "😺dzNodes"
 
     def do_playsound(self, path, volume, loop, trigger):
 
-        print(f"play sound: path={path},volume={volume},loop={loop},trigger={trigger}")
+        print(f"# 😺dzNodes: Play Sound (Loop): path={path},volume={volume},loop={loop},trigger={trigger}")
         if trigger:
             t = threading.Thread(target=Play(path, volume, loop))
             t.start()
