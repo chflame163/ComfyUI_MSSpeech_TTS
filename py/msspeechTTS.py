@@ -51,7 +51,7 @@ class Text2AudioEdgeTts:
     RETURN_NAMES = ("MP3 file: String",)
     FUNCTION = "text_2_audio"
     OUTPUT_NODE = True
-    CATEGORY = "😺dzNodes"
+    CATEGORY = "😺dzNodes/MSSpeechTTS"
 
     def text_2_audio(self,voice,filename_prefix,text,rate):
         voice_name = voice_dict[voice]

@@ -27,7 +27,7 @@ class Trigger:
     RETURN_TYPES = ("BOOLEAN",)
     FUNCTION = "check_input"
     OUTPUT_NODE = True
-    CATEGORY = "😺dzNodes"
+    CATEGORY = "😺dzNodes/MSSpeechTTS"
 
     def check_input(self, always_true, anything=None):
 

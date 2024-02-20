@@ -34,7 +34,7 @@ class Play_Sound_pygame_Now:
     RETURN_TYPES = ()
     FUNCTION = "do_playsound"
     OUTPUT_NODE = True
-    CATEGORY = "😺dzNodes"
+    CATEGORY = "😺dzNodes/MSSpeechTTS"
 
     def do_playsound(self, path, volume, loop, trigger):
 
