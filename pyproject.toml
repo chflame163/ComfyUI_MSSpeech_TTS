@@ -1,0 +1,15 @@
+[project]
+name = "comfyui_msspeech_tts"
+description = "A text-to-speech plugin used under ComfyUI. It utilizes the Microsoft Speech TTS interface to convert text content into MP3 format audio files."
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["numpy", "edge_tts", "asyncio", "pyglet", "arcade", "pygame"]
+
+[project.urls]
+Repository = "https://github.com/chflame163/ComfyUI_MSSpeech_TTS"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI_MSSpeech_TTS"
+Icon = ""
